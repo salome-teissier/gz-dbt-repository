@@ -2,6 +2,7 @@ WITH sales_data AS (
     SELECT
         sales.orders_id,
         sales.products_id,
+        date_date,
         CAST(sales.quantity AS FLOAT64) AS quantity,
         CAST(sales.revenue AS FLOAT64) AS revenue,
         CAST(product.purchase_price AS FLOAT64) AS purchase_price
@@ -9,10 +10,10 @@ WITH sales_data AS (
     JOIN {{ ref('stg_gz_raw_data__raw_gz_product') }} AS product
     ON sales.products_id = product.products_id
 )
-
 SELECT
     orders_id,
     products_id,
+    date_date,
     quantity,
     revenue,
     purchase_price,
